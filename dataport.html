@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="" href="./dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="" href="./css/dataport.css">
+    <style>
+        * {
+            /*border: 1px solid red;*/
+        }
+        
+        nav {
+            margin-top: 50px;
+            margin-bottom: 10px;
+            font-weight: 900;
+            font-size: 20px;
+        }
+        
+        .part1 {
+            background: #3385FF;
+        }
+        
+        .row_first {
+            background: #e1e1e1;
+        }
+        
+        .row_data {
+            cursor: pointer;
+            border: 1px solid #f1f8fe;
+        }
+        
+        .row_data_checked {
+            background: #8ad0fd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!--导航-->
+        <nav>数据列表</nav>
+        <!--内容-->
+        <div class="row part1">
+            <div class="col-md-2"><i class="glyphicon glyphicon-list-alt"></i>诊断数据</div>
+        </div>
+        <div class='row row_first'>
+            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'></div>
+            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'><input type='checkbox' name='' value=''></div>
+            <div class='col-lg-10 col-md-10 col-sm-9 col-xs-8'>数据包</div>
+        </div>
+    </div>
+</body>
+<script src="./dist/js/jquery.min.js">
+</script>
+<script src="./dist/js/bootstrap.min.js">
+</script>
+
+<script>
+    $.ajax({
+        type: "get",
+        url: "./data.json",
+        // dataType: "jsonp", //jsonp数据类型 
+        // jsonp: "jsonpCallback", //服务端用于接收callback调用的function名的参数 
+        success: function(data) {
+            var data = data.photos.photo;
+            // console.log(data);
+            var htmljson = "";
+            for (var i = 0; i < data.length; i++) {
+                // console.log(i);
+                htmljson += "<div class='row row_data'><div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'>" + i +
+                    "</div><div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'><input type='checkbox' name='' value=''></div>" +
+                    "<div class='col-lg-10 col-md-10 col-sm-9 col-xs-8'>" + data[i].url + "</div></div>"
+                    // console.log(htmljson);
+            }
+
+            $(".container").append(htmljson);
+            console.log($(".row_data"));
+            $(".row_data").click(function(index) {
+                console.log(this);
+                $(".row_data").removeClass('row_data_checked');
+                $(this).addClass('row_data_checked');
+            });
+        }
+    });
+</script>
+
+</html>
