@@ -34,11 +34,10 @@
             /*vertical-align: middle;*/
         }
         
-        .row div {
+        .row_data div {
             border: 1px dotted #f1f8fe;
             border-bottom: none;
             border-right: none;
-            text-align: center;
         }
         
         .row div:first-child {
@@ -47,6 +46,10 @@
         
         .row_data {
             cursor: pointer;
+        }
+        
+        .row_data:hover {
+            background: #8ad0fd;
         }
         
         .row_data_checked {
@@ -87,6 +90,7 @@
             var data = data.photos.photo;
             // console.log(data);
             var htmljson = "";
+            console.log(data.length);
             for (var i = 0; i < data.length; i++) {
                 // console.log(i);
                 htmljson += "<div class='row row_data'><div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'>" + i +
