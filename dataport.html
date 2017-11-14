@@ -28,9 +28,25 @@
             background: #e1e1e1;
         }
         
+        .row {
+            border: 1px solid #f1f8fe;
+            /*line-height: 20px;*/
+            /*vertical-align: middle;*/
+        }
+        
+        .row div {
+            border: 1px dotted #f1f8fe;
+            border-bottom: none;
+            border-right: none;
+            text-align: center;
+        }
+        
+        .row div:first-child {
+            /*border-right: none;*/
+        }
+        
         .row_data {
             cursor: pointer;
-            border: 1px solid #f1f8fe;
         }
         
         .row_data_checked {
@@ -48,9 +64,11 @@
             <div class="col-md-2"><i class="glyphicon glyphicon-list-alt"></i>诊断数据</div>
         </div>
         <div class='row row_first'>
-            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'></div>
-            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'><input type='checkbox' name='' value=''></div>
-            <div class='col-lg-10 col-md-10 col-sm-9 col-xs-8'>数据包</div>
+            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'></div>
+            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
+                <input type="checkbox" name="" value="" class="checkall">
+            </div>
+            <div class='col-lg-10 col-md-10 col-sm-10 col-xs-10'>数据包</div>
         </div>
     </div>
 </body>
@@ -72,7 +90,7 @@
             for (var i = 0; i < data.length; i++) {
                 // console.log(i);
                 htmljson += "<div class='row row_data'><div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'>" + i +
-                    "</div><div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'><input type='checkbox' name='' value=''></div>" +
+                    "</div><div class='col-lg-1 col-md-1 col-sm-1 col-xs-2'><input class='check_box' type='checkbox' name='' value=''></div>" +
                     "<div class='col-lg-10 col-md-10 col-sm-9 col-xs-8'>" + data[i].url + "</div></div>"
                     // console.log(htmljson);
             }
@@ -84,6 +102,14 @@
                 $(".row_data").removeClass('row_data_checked');
                 $(this).addClass('row_data_checked');
             });
+        }
+    });
+    $(".checkall").click(function() {
+        console.log(this.checked);
+        if (this.checked) {
+            $(".check_box").prop("checked", true);
+        } else {
+            $(".check_box").prop("checked", false);
         }
     });
 </script>
