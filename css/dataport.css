@@ -21,6 +21,10 @@
       border: 1px solid #f1f8fe;
   }
   
+  .row_data_container {
+      height: 255px;
+  }
+  
   .row_data div {
       border: 1px dotted #f1f8fe;
       border-bottom: none;
