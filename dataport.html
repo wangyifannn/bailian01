@@ -32,7 +32,8 @@
             <div class='col-lg-1 col-md-1 col-sm-2 col-xs-2'>
                 <input type="checkbox" name="" value="" class="checkall">
             </div>
-            <div class='col-lg-10 col-md-10 col-sm-8 col-xs-8'>数据包</div>
+            <div class='col-lg-8 col-md-8 col-sm-6 col-xs-6'>数据包</div>
+            <div class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>操作</div>
         </div>
         <!--加载数据的容器-->
         <div class="row_data_container">
@@ -81,7 +82,7 @@
                 // console.log(i);
                 cHtml += "<div class='row row_data'><div class='col-lg-1 col-md-1 col-sm-2 col-xs-2'>" + i +
                     "</div><div class='col-lg-1 col-md-1 col-sm-2 col-xs-2'><input class='check_box' type='checkbox' name='' value=''></div>" +
-                    "<div class='col-lg-10 col-md-10 col-sm-8 col-xs-8'>" + data[i].url + "</div></div>"
+                    "<div class='col-lg-8 col-md-8 col-sm-6 col-xs-6'>" + data[i].url + "</div><div class='col-lg-2 col-md-2 col-sm-2 col-xs-2'> 导出</div></div>"
                     // console.log(htmljson);
             }
             $(".row_data_container").html(cHtml); //将数据增加到页面中
@@ -89,7 +90,6 @@
     };
     pageObj.init(options);
     // end 分页
-
     // 单击每一行
     $(".row_data").click(function(index) {
         console.log(this);

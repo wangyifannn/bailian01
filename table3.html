@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-responsive">
+
+            <div>dbc表</div>
+            <table id="table">
+
+            </table>
+        </div>
+
+        <div class="table-responsive table2-box">
+
+            <div>a21表</div>
+            <table id="table2">
+
+            </table>
+        </div>
+    </div>
+    <script src="./dist/js/jquery.min.js">
+    </script>
+    <script src="./dist/js/bootstrap.min.js">
+    </script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.js"></script>
+    <script>
+        $('#table').bootstrapTable({
+            url: './datatable.json', //请求后台的URL（*）
+            // method: 'get', //请求方式（*）
+            toolbar: '#toolbar', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true, //是否显示分页（*）
+            sortOrder: "asc", //排序方式
+            queryParams: "queryParams",
+            sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pageSize: 10, //每页的记录行数（*）
+            pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+            columns: [{
+                field: 'id',
+                title: '序号'
+            }, {
+                field: 'name',
+                title: '脚本名称'
+            }, {
+                field: 'price',
+                title: '更新时间'
+            }, {
+                field: 'price',
+                title: '说明'
+            }, {
+                field: 'price',
+                title: '导出'
+            }]
+        });
+
+        $('#table2').bootstrapTable({
+            url: './datatable.json', //请求后台的URL（*）
+            // method: 'get', //请求方式（*）
+            toolbar: '#toolbar', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true, //是否显示分页（*）
+            sortOrder: "asc", //排序方式
+            queryParams: "queryParams",
+            sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pageSize: 10, //每页的记录行数（*）
+            pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+            columns: [{
+                field: 'id',
+                title: '序号'
+            }, {
+                field: 'name',
+                title: '脚本名称'
+            }, {
+                field: 'price',
+                title: '更新时间'
+            }, {
+                field: 'price',
+                title: '说明'
+            }, {
+                field: 'price',
+                title: '导出'
+            }]
+        });
+    </script>
+
+</body>
+
+</html>

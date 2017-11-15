@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+　　  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+ 　　 <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="./dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="./css/pagination.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="./css/dataport.css" />-->
+    <style>
+        @-moz-document url-prefix() {
+            fieldset {
+                display: table-cell;
+            }
+        }
+        
+        caption {
+            font-weight: 900;
+            font-size: 25px;
+            color: black;
+        }
+        
+        caption,
+        tbody tr td,
+        thead tr th {
+            text-align: center;
+        }
+        
+        .container {
+            /*border: 1px solid red;*/
+            padding-top: 50px;
+        }
+        
+        .info-tbody {
+            background-color: #e1e1e1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!--响应式 当屏幕小于768的时候, 才会出现滚动条-->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <caption>dbc表</caption>
+                <!-- On rows -->
+                <thead>
+                    <tr class="active">
+                        <th>序号</th>
+                        <th>脚本名称</th>
+                        <th>更新时间</th>
+                        <th>说明</th>
+                        <th>导出</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                <tfoot>
+                    <tr class="active">
+                        <td>tfoot</td>
+                        <td>tfoot</td>
+                        <td>tfoot</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+</body>
+<script src="./dist/js/jquery.min.js">
+</script>
+<script src="./dist/js/bootstrap.min.js">
+</script>
+<script>
+    $.ajax({
+        type: "get",
+        url: "./data.json",
+        async: false,
+        success: function(data) {
+            data = data.photos.photo;
+            console.log(data);
+            var cHtml = '';
+            for (var i = 0; i < data.length; i++) {
+                // console.log(i);
+                cHtml += "<tr class='info-tbody'><td>" + i +
+                    "</td><td>" + data[i].id + "</td><td>" + data[i].url + "</td>" +
+                    "<td>" + data[i].url + "</td><td> <input class='check_box' type='radio' name='' value=''></td></tr>"
+                    // console.log(cHtml);
+            }
+            $("tbody").html(cHtml); //将数据增加到页面中
+
+        }
+    });
+</script>
+
+<script>
+</script>
+
+</html>

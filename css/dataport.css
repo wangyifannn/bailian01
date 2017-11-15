@@ -19,6 +19,7 @@
   
   .row {
       border: 1px solid #f1f8fe;
+      text-align: center;
   }
   
   .row_data_container {
@@ -27,14 +28,14 @@
   
   .row_data div {
       border: 1px dotted #f1f8fe;
+      /*border: 1px dotted #c9c9c9;*/
       border-bottom: none;
       border-right: none;
   }
-  
-  .row div:first-child,
+  /*.row div:first-child,
   .row div:nth-child(2) {
       text-align: center;
-  }
+  }*/
   
   .row_data {
       cursor: pointer;
