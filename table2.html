@@ -12,8 +12,6 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="./dist/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="./css/pagination.css" />-->
-    <!--<link rel="stylesheet" type="text/css" href="./css/dataport.css" />-->
     <style>
         @-moz-document url-prefix() {
             fieldset {
@@ -36,6 +34,7 @@
         .container {
             /*border: 1px solid red;*/
             padding-top: 50px;
+            padding-bottom: 50px;
         }
         
         .info-tbody {
@@ -53,11 +52,11 @@
                 <!-- On rows -->
                 <thead>
                     <tr class="active">
+                        <th>导出</th>
                         <th>序号</th>
                         <th>脚本名称</th>
                         <th>更新时间</th>
                         <th>说明</th>
-                        <th>导出</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,9 +64,7 @@
                 </tbody>
                 <tfoot>
                     <tr class="active">
-                        <td>tfoot</td>
-                        <td>tfoot</td>
-                        <td>tfoot</td>
+
                     </tr>
                 </tfoot>
             </table>
@@ -77,6 +74,7 @@
 </script>
 <script src="./dist/js/bootstrap.min.js">
 </script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/extensions/export/bootstrap-table-export.js"></script>
 <script>
     $.ajax({
         type: "get",
@@ -88,9 +86,9 @@
             var cHtml = '';
             for (var i = 0; i < data.length; i++) {
                 // console.log(i);
-                cHtml += "<tr class='info-tbody'><td>" + i +
+                cHtml += "<tr class='info-tbody'><td> <input class='check_box' type='radio' name='' value=''></td><td>" + i +
                     "</td><td>" + data[i].id + "</td><td>" + data[i].url + "</td>" +
-                    "<td>" + data[i].url + "</td><td> <input class='check_box' type='radio' name='' value=''></td></tr>"
+                    "<td>" + data[i].url + "</td></tr>"
                     // console.log(cHtml);
             }
             $("tbody").html(cHtml); //将数据增加到页面中

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./dist/css/bootstrap.min.css">
+    <style>
+        .tablename {
+            font-weight: 900;
+            font-size: 25px;
+            color: black;
+        }
+        
+        .container {
+            /*border: 1px solid red;*/
+            padding-top: 50px;
+        }
+        
+        .table2-box {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-responsive">
+
+            <div class="tablename">dbc表</div>
+            <div id="toolbar">
+                <select class="form-control">
+                <option value="">Export Basic</option>
+                <option value="all">Export All</option>
+                <option value="selected">Export Selected</option>
+            </select>
+            </div>
+            <button id="getsel_button" class="btn btn-default">getSelections</button>
+            <table id="table" data-toggle="table" data-toolbar="#toolbar" data-show-export="true" data-click-to-select="true">
+                <thead>
+                    <tr>
+                        <th data-field="state" data-radio="true" data-width="5%">导出</th>
+                        <th data-field="id" data-align="center" data-width="10%">序号</th>
+                        <th data-field="name" data-align="center" data-width="20%">脚本说明</th>
+                        <th data-field="price" data-align="center" data-width="20%">更新时间</th>
+                        <th data-field="price" data-align="center" data-width="45%">说明</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="table-responsive table2-box">
+            <div class="tablename">a21表</div>
+            <div id="toolbar2">
+                <button id="getsel_button2" class="btn btn-default">getSelections</button>
+
+            </div>
+            <table id="table2" data-click-to-select="true">
+                <thead>
+                    <tr>
+                        <th data-field="state" data-checkbox="true" data-width="3%"></th>
+                        <th data-field="id" data-align="center" data-width="3%">序号</th>
+                        <th data-field="name" data-width="20%">脚本说明</th>
+                        <th data-field="price" data-width="25%">更新时间</th>
+                        <th data-field="price" data-width="45%">说明</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <script src="./dist/js/jquery.min.js">
+    </script>
+    <script src="./dist/js/bootstrap.min.js">
+    </script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+    <script type="text/javascript" src="./dist/js-xlsx/xlsx.core.min.js"></script>
+    <script type="text/javascript" src="./dist/FileSaver/FileSaver.min.js"></script>
+    <script type="text/javascript" src="./dist/js/tableExport.min.js"></script>
+    <script type="text/javascript" src="./dist/js/blob.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/extensions/export/bootstrap-table-export.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.js"></script>
+    <script>
+        var $table = $('#table');
+        var $table2 = $('#table2');
+        $(function() {
+                $('#toolbar').find('select').change(function() {
+                    $table.bootstrapTable('destroy').bootstrapTable({
+                        exportDataType: $(this).val()
+                    });
+                });
+                $("#getsel_button").click(function() {
+                    alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')));
+                });
+                // 表2
+                $("#getsel_button2").click(function() {
+                    alert('getSelections: ' + JSON.stringify($table2.bootstrapTable('getSelections')));
+                });
+            })
+            // 创建表格
+        $('#table').bootstrapTable({
+            url: './datatable.json', //请求后台的URL（*）
+            // method: 'get', //请求方式（*）
+            toolbar: '#toolbar', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            search: true,
+            showToggle: true,
+            showRefresh: true,
+
+            // clickToSelect: true, //设置true 将在点击行时，自动选择rediobox 和 checkbox
+            //  maintainSelected: true,//设置为 true 在点击分页按钮或搜索按钮时，将记住checkbox的选择项
+            align: "center",
+            buttonsAlign: "right", //按钮位置  
+            // detailView: true, //设置为true 可以显示详细页面信息
+            Icons: 'glyphicon-export',
+            exportDataType: "selected",
+            exportOptions: {
+                ignoreColumn: [0], //忽略某一列的索引  
+                formats: ["xlsx", "xls", "csv", "txt"], //导出的文件类型，会生成相应的导出按钮
+                headings: true, //是否在<thead>元素中显示表格的头部（th或td元素）。
+                fileName: 'dbc表', //文件名称设置  
+                worksheetName: 'sheet1', //表格工作区名称  
+                tableName: 'dbc数据报表',
+                position: "top", //标题元素相对于表格的位置，可以是top或bottom。
+                excelstyles: ['background-color:skyblue', 'color:black', 'font-size:17px', 'font-weight'],
+                onMsoNumberFormat: null
+            },
+        });
+
+
+        $('#table2').bootstrapTable({
+            url: './datatable.json', //请求后台的URL（*）
+            // method: 'get', //请求方式（*）
+            toolbar: '#toolbar2', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            search: true,
+            showToggle: true,
+            showRefresh: true,
+
+            // clickToSelect: true, //设置true 将在点击行时，自动选择rediobox 和 checkbox
+            //  maintainSelected: true,//设置为 true 在点击分页按钮或搜索按钮时，将记住checkbox的选择项
+            align: "center",
+
+            buttonsAlign: "right", //按钮位置  
+            // detailView: true, //设置为true 可以显示详细页面信息
+            Icons: 'glyphicon-export',
+            exportOptions: {
+                ignoreColumn: [0], //忽略某一列的索引  
+                formats: ["xlsx", "xls", "csv", "txt"], //导出的文件类型，会生成相应的导出按钮
+                headings: true, //是否在<thead>元素中显示表格的头部（th或td元素）。
+                fileName: 'dbc表', //文件名称设置  
+                worksheetName: 'sheet1', //表格工作区名称  
+                tableName: 'dbc数据报表',
+                position: "top", //标题元素相对于表格的位置，可以是top或bottom。
+                excelstyles: ['background-color:skyblue', 'color:black', 'font-size:17px', 'font-weight'],
+                onMsoNumberFormat: null
+            }
+        });
+    </script>
+
+</body>
+
+</html>
